@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Monivulation test runner</title>
+
+    <!-- Bootstrap -->
+    <link href="../../gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../gentelella-master/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../gentelella-master/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../../gentelella-master/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="../../gentelella-master/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="../../gentelella-master/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="../../gentelella-master/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="../../gentelella-master/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../../gentelella-master/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <span class="site_title">Monivulation Tester</span>
+                </div>
+
+                <div class="clearfix"></div>
+
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>General</h3>
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="user_create.html">Create new user</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu_section">
+                        <h3>Basic</h3>
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-spinner"></i> Cycle <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="cycle_single.html">Single cycle</a></li>
+                                    <li><a href="cycle_multiple.html">Multiple cycles</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu_section">
+                        <h3>Data</h3>
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-eyedropper"></i> Temperature <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="temperature_single.html">Single entry</a></li>
+                                    <li><a href="temperature_multiple.html">Multiple entries</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-tachometer"></i> Weight <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="weight_single.html">Single entry</a></li>
+                                    <li><a href="weight_multiple.html">Multiple entries</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-heart"></i> BPM <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="bpm_single.html">Single entry</a></li>
+                                    <li><a href="bpm_multiple.html">Multiple entries</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email_input_id">Email <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="email" id="email_input_id" required="required" class="form-control col-md-7 col-xs-12" value="julie@gmail.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username_input_id">Username <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="username_input_id" required="required" class="form-control col-md-7 col-xs-12" value="julie">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_input_id">Password <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="password" id="password_input_id" required="required" class="form-control col-md-7 col-xs-12" value="123456">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstName_input_id">First Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="firstName_input_id" required="required" class="form-control col-md-7 col-xs-12" value="Julie">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastName_input_id">Last Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="lastName_input_id" required="required" class="form-control col-md-7 col-xs-12" value="Doe">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="birthDate_input_id">Birth Date <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="date" id="birthDate_input_id" required="required" class="form-control col-md-7 col-xs-12" value="1991-01-30">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="inscriptionDate_input_id">Inscription Date <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="date" id="inscriptionDate_input_id" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../../gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+<!-- jQuery UI
+<script src="../../gentelella-master/vendors/Flot/examples/shared/jquery-ui/jquery-ui.min.css"></script>-->
+<!-- Bootstrap -->
+<script src="../../gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../gentelella-master/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../../gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../../gentelella-master/vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="../../gentelella-master/vendors/moment/min/moment.min.js"></script>
+<script src="../../gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="../../gentelella-master/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="../../gentelella-master/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="../../gentelella-master/vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="../../gentelella-master/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="../../gentelella-master/vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="../../gentelella-master/vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="../../gentelella-master/vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="../../gentelella-master/vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="../../gentelella-master/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="../../gentelella-master/vendors/starrr/dist/starrr.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../gentelella-master/build/js/custom.js"></script>
+
+
+<!-- Main javascript methods -->
+<script src="../js/general.js"></script>
+<script src="../js/rest_api.js"></script>
+<script src="../js/user_create.js"></script>
+
+
+</body>
+</html>

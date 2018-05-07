@@ -1,0 +1,32 @@
+.calculation_title{
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.calculation_value{
+    color: #7a43b6;
+}
+
+.rowIndex{
+    font-weight: bold;
+    color: darkslategray;
+}
+
+.action_btn_class{
+    margin-right: 50px;
+    background-color: #169F85;
+    color: white;
+}
+
+.tempRange_slider_class{
+    margin-top: 12px;
+}
+
+#tempRange_handle_id {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+}
