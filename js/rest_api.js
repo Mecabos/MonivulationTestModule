@@ -157,7 +157,7 @@ function startPregnancyAPI(id,startDate,callback){
     };
     $.ajax({
         type: 'POST',
-        url: startPeriodURL + id,
+        url: startPregnancyURL + id,
         data :JSON.stringify(newCycleData),
         contentType: "application/json",
         datatype: "application/json",

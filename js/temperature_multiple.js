@@ -174,7 +174,11 @@ $(document).ready(function () {
             {
                 text: 'Start pregnancy',
                 action: function (e, dt, node, config) {
-                    collectDataForTempsCreation(1);
+                    var entryDate = addNumberOfDays($("#entryDate_input_id_1").val(), 0);
+                    formattedForServerEntryDate = formatDateForServer(entryDate);
+                    startPregnancyAPI(userId,formattedForServerEntryDate,function () {
+                        alert("New Pregnancy created at date " + formatDateFromServer(formattedForServerEntryDate));
+                    })
                 },
                 className: 'action_btn_class',
                 attr: {
