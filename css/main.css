@@ -18,11 +18,11 @@
     color: white;
 }
 
-.tempRange_slider_class{
+.tempRange_slider_class,.weightRange_slider_class, .bpmRange_handle_class {
     margin-top: 12px;
 }
 
-#tempRange_handle_id {
+#tempRange_handle_id, #weightRange_handle_id, #bpmRange_handle_id  {
     width: 3em;
     height: 1.6em;
     top: 50%;

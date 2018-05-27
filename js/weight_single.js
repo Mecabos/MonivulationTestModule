@@ -22,13 +22,13 @@ $(document).ready(function () {
     function checkFirstCycleCallback(firstCycleIsCreated) {
         if (firstCycleIsCreated) {
             $("#createFirstCycle_div_id").hide();
-            $("#createTempData_div_id").show();
-            getLastTemperatureAPI(userId, updateNewTempDataEntryDate);
+            $("#createWeightData_div_id").show();
+            getLastWeightAPI(userId, updateNewWeightDataEntryDate);
         }
         else {
             alert("Initial cycle and status not created please insert proper data");
             $("#createFirstCycle_div_id").show();
-            $("#createTempData_div_id").hide();
+            $("#createWeightData_div_id").hide();
         }
     }
 
@@ -53,60 +53,60 @@ $(document).ready(function () {
     function createFirstCycleCallback(response) {
         alert(response)
         $("#createFirstCycle_div_id").hide();
-        $("#createTempData_div_id").show();
-        getLastTemperatureAPI(userId, updateNewTempDataEntryDate);
+        $("#createWeightData_div_id").show();
+        getLastWeightAPI(userId, updateNewWeightDataEntryDate);
     }
 
-    //************Initial data for new temp data
-    function updateNewTempDataEntryDate(lastTempDataInfo) {
-        if (lastTempDataInfo.entryDate != undefined) {
-            formattedLastTempEntryDate = formatDateFromServer(lastTempDataInfo.entryDate);
-            $("#tempDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastTempEntryDate, 1)));
-        } else if (lastTempDataInfo.startDate != undefined) {
-            formattedLastTempEntryDate = formatDateFromServer(lastTempDataInfo.startDate);
-            $("#tempDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastTempEntryDate, 0)));
+    //************Initial data for new weight data
+    function updateNewWeightDataEntryDate(lastWeightDataInfo) {
+        if (lastWeightDataInfo.entryDate != undefined) {
+            formattedLastWeightEntryDate = formatDateFromServer(lastWeightDataInfo.entryDate);
+            $("#weightDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastWeightEntryDate, 1)));
+        } else if (lastWeightDataInfo.startDate != undefined) {
+            formattedLastWeightEntryDate = formatDateFromServer(lastWeightDataInfo.startDate);
+            $("#weightDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastWeightEntryDate, 0)));
         } else {
-            getCycleInfoAPI(userId,formatDateForServer(new Date().toDateInputValue()), updateNewTempDataEntryDate);
+            getCycleInfoAPI(userId,formatDateForServer(new Date().toDateInputValue()), updateNewWeightDataEntryDate);
         }
 
     }
 
-    //************Temperature slider
-    var handle = $("#tempRange_handle_id");
-    var selectedTempValue;
-    $("#tempRange_slider_id").slider({
+    //************Weight slider
+    var handle = $("#weightRange_handle_id");
+    var selectedWeightValue;
+    $("#weightRange_slider_id").slider({
         range: false,
-        min: 36,
-        max: 38,
+        min: 40,
+        max: 150,
         step: 0.1,
         create: function () {
             handle.text($(this).slider("value"));
         },
         slide: function (event, ui) {
-            selectedTempValue = ui.value;
+            selectedWeightValue = ui.value;
             handle.text(ui.value);
         }
     });
-    //************Temperature data creation
-    $("#createTempData_form_id").submit(function (event) {
+    //************Weight data creation
+    $("#createWeightData_form_id").submit(function (event) {
         event.preventDefault();
-        entryDate = addNumberOfDays($("#tempDataEntryDate_input_id").val(), 0);
+        entryDate = addNumberOfDays($("#weightDataEntryDate_input_id").val(), 0);
         formattedForServerEntryDate = formatDateForServer(entryDate);
-        tempValue = selectedTempValue;
-        if (tempValue == 0 || tempValue == undefined)
-            tempValue = 36;
-        tempData = {
-            value: tempValue,
+        weightValue = selectedWeightValue;
+        if (weightValue == 0 || weightValue == undefined)
+            weightValue = 40;
+        weightData = {
+            value: weightValue,
             entryDate: formattedForServerEntryDate
         }
-        createNewTempData(tempData);
+        createNewWeightData(weightData);
     });
 
-    function createNewTempData(tempData) {
-        addSingleTempDataAPI(userId, tempData, function () {
-            getCycleInfoAPI(userId,tempData.entryDate , function (response) {
-                console.log(formatDateFromServer(tempData.entryDate) + " : " + tempData.value + "°" + "=> Status :\"" + response.currentStatus + "\"||Current Day :" + response.currentDayOfCycle);
-                getLastTemperatureAPI(userId, updateNewTempDataEntryDate);
+    function createNewWeightData(weightData) {
+        addSingleWeightDataAPI(userId, weightData, function () {
+            getCycleInfoAPI(userId,weightData.entryDate , function (response) {
+                console.log(formatDateFromServer(weightData.entryDate) + " : " + weightData.value + "Kg" + "||Current Day :" + response.currentDayOfCycle);
+                getLastWeightAPI(userId, updateNewWeightDataEntryDate);
             });
         })
     }

@@ -9,6 +9,10 @@ var startPeriodURL = serverURL + '/cycle/startPeriod/';
 var startPregnancyURL = serverURL + '/cycle/startPregnancy/';
 var addTemperatureURL = serverURL + '/temperatureData/add/';
 var getLastTemperatureURL = serverURL + '/temperatureData/getLast/';
+var addWeightURL = serverURL + '/weightData/add/';
+var getLastWeightURL = serverURL + '/weightData/getLast/';
+var addBpmURL = serverURL + '/bpmData/add/';
+var getLastBpmURL = serverURL + '/bpmData/getLast/';
 /*---------------------------------REST Services---------------------------------*/
 /*---USER---*/
 function getAllUserAPI(callback){
@@ -142,6 +146,86 @@ function getLastTemperatureAPI(id,callback){
     $.ajax({
         type: 'GET',
         url: getLastTemperatureURL + id,
+        data : {},
+        contentType: "application/json",
+        datatype: "application/json",
+        success: function (response) {
+            callback(response);
+        }
+    });
+}
+
+/*---WEIGHT---*/
+function addWeightDataAPI(id,weightData, newCycleData, i, callback){
+    $.ajax({
+        type: 'POST',
+        url: addWeightURL + id,
+        data : JSON.stringify(weightData),
+        contentType: "application/json",
+        datatype: "application/json",
+        success: function (response) {
+            callback(newCycleData,i);
+        }
+    });
+}
+
+function addSingleWeightDataAPI(id,weightData,callback){
+    $.ajax({
+        type: 'POST',
+        url: addWeightURL + id,
+        data : JSON.stringify(weightData),
+        contentType: "application/json",
+        datatype: "application/json",
+        success: function (response) {
+            callback(response);
+        }
+    });
+}
+
+function getLastWeightAPI(id,callback){
+    $.ajax({
+        type: 'GET',
+        url: getLastWeightURL + id,
+        data : {},
+        contentType: "application/json",
+        datatype: "application/json",
+        success: function (response) {
+            callback(response);
+        }
+    });
+}
+
+/*---BPM---*/
+function addBpmDataAPI(id,bpmData, newCycleData, i, callback){
+    $.ajax({
+        type: 'POST',
+        url: addBpmURL + id,
+        data : JSON.stringify(bpmData),
+        contentType: "application/json",
+        datatype: "application/json",
+        success: function (response) {
+            callback(newCycleData,i);
+        }
+    });
+}
+
+function addSingleBpmDataAPI(id,bpmData,callback){
+    $.ajax({
+        type: 'POST',
+        url: addBpmURL + id,
+        data : JSON.stringify(bpmData),
+        contentType: "application/json",
+        datatype: "application/json",
+        success: function (response) {
+            callback(response);
+        }
+    });
+}
+
+function getLastBpmAPI(id,callback){
+    $.ajax({
+        type: 'GET',
+        url: getLastBpmURL + id,
         data : {},
         contentType: "application/json",
         datatype: "application/json",

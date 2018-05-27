@@ -82,3 +82,27 @@ function pickTempValue(isInFolicular){
     return pickedTempValue;
 }
 
+/*---------------------------------URL Methods---------------------------------*/
+function addUrlParam(url, key, value) {
+    if (url.indexOf('?') > -1) {
+        return url + "&" + key + "=" + value;
+    } else {
+        return url + "?" + key + "=" + value;
+    }
+}
+
+function addUrlParams(url, params) {
+    var finalUrl = url;
+    for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+            alert(finalUrl);
+            if (finalUrl.indexOf("?") > -1) {
+                finalUrl = finalUrl + "&" + key + "=" + params[key];
+            } else {
+                finalUrl = finalUrl + "?" + key + "=" + params[key];
+            }
+        }
+    }
+    return finalUrl;
+}
+

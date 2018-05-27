@@ -22,13 +22,13 @@ $(document).ready(function () {
     function checkFirstCycleCallback(firstCycleIsCreated) {
         if (firstCycleIsCreated) {
             $("#createFirstCycle_div_id").hide();
-            $("#createTempData_div_id").show();
-            getLastTemperatureAPI(userId, updateNewTempDataEntryDate);
+            $("#createBpmData_div_id").show();
+            getLastBpmAPI(userId, updateNewBpmDataEntryDate);
         }
         else {
             alert("Initial cycle and status not created please insert proper data");
             $("#createFirstCycle_div_id").show();
-            $("#createTempData_div_id").hide();
+            $("#createBpmData_div_id").hide();
         }
     }
 
@@ -53,60 +53,60 @@ $(document).ready(function () {
     function createFirstCycleCallback(response) {
         alert(response)
         $("#createFirstCycle_div_id").hide();
-        $("#createTempData_div_id").show();
-        getLastTemperatureAPI(userId, updateNewTempDataEntryDate);
+        $("#createBpmData_div_id").show();
+        getLastBpmAPI(userId, updateNewBpmDataEntryDate);
     }
 
-    //************Initial data for new temp data
-    function updateNewTempDataEntryDate(lastTempDataInfo) {
-        if (lastTempDataInfo.entryDate != undefined) {
-            formattedLastTempEntryDate = formatDateFromServer(lastTempDataInfo.entryDate);
-            $("#tempDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastTempEntryDate, 1)));
-        } else if (lastTempDataInfo.startDate != undefined) {
-            formattedLastTempEntryDate = formatDateFromServer(lastTempDataInfo.startDate);
-            $("#tempDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastTempEntryDate, 0)));
+    //************Initial data for new bpm data
+    function updateNewBpmDataEntryDate(lastBpmDataInfo) {
+        if (lastBpmDataInfo.entryDate != undefined) {
+            formattedLastBpmEntryDate = formatDateFromServer(lastBpmDataInfo.entryDate);
+            $("#bpmDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastBpmEntryDate, 1)));
+        } else if (lastBpmDataInfo.startDate != undefined) {
+            formattedLastBpmEntryDate = formatDateFromServer(lastBpmDataInfo.startDate);
+            $("#bpmDataEntryDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastBpmEntryDate, 0)));
         } else {
-            getCycleInfoAPI(userId,formatDateForServer(new Date().toDateInputValue()), updateNewTempDataEntryDate);
+            getCycleInfoAPI(userId,formatDateForServer(new Date().toDateInputValue()), updateNewBpmDataEntryDate);
         }
 
     }
 
-    //************Temperature slider
-    var handle = $("#tempRange_handle_id");
-    var selectedTempValue;
-    $("#tempRange_slider_id").slider({
+    //************Bpm slider
+    var handle = $("#bpmRange_handle_id");
+    var selectedBpmValue;
+    $("#bpmRange_slider_id").slider({
         range: false,
-        min: 36,
-        max: 38,
+        min: 60,
+        max: 100,
         step: 0.1,
         create: function () {
             handle.text($(this).slider("value"));
         },
         slide: function (event, ui) {
-            selectedTempValue = ui.value;
+            selectedBpmValue = ui.value;
             handle.text(ui.value);
         }
     });
-    //************Temperature data creation
-    $("#createTempData_form_id").submit(function (event) {
+    //************Bpm data creation
+    $("#createBpmData_form_id").submit(function (event) {
         event.preventDefault();
-        entryDate = addNumberOfDays($("#tempDataEntryDate_input_id").val(), 0);
+        entryDate = addNumberOfDays($("#bpmDataEntryDate_input_id").val(), 0);
         formattedForServerEntryDate = formatDateForServer(entryDate);
-        tempValue = selectedTempValue;
-        if (tempValue == 0 || tempValue == undefined)
-            tempValue = 36;
-        tempData = {
-            value: tempValue,
+        bpmValue = selectedBpmValue;
+        if (bpmValue == 0 || bpmValue == undefined)
+            bpmValue = 60;
+        bpmData = {
+            value: bpmValue,
             entryDate: formattedForServerEntryDate
         }
-        createNewTempData(tempData);
+        createNewBpmData(bpmData);
     });
 
-    function createNewTempData(tempData) {
-        addSingleTempDataAPI(userId, tempData, function () {
-            getCycleInfoAPI(userId,tempData.entryDate , function (response) {
-                console.log(formatDateFromServer(tempData.entryDate) + " : " + tempData.value + "°" + "=> Status :\"" + response.currentStatus + "\"||Current Day :" + response.currentDayOfCycle);
-                getLastTemperatureAPI(userId, updateNewTempDataEntryDate);
+    function createNewBpmData(bpmData) {
+        addSingleBpmDataAPI(userId, bpmData, function () {
+            getCycleInfoAPI(userId,bpmData.entryDate , function (response) {
+                console.log(formatDateFromServer(bpmData.entryDate) + " : " + bpmData.value + "bpm" + "||Current Day :" + response.currentDayOfCycle);
+                getLastBpmAPI(userId, updateNewBpmDataEntryDate);
             });
         })
     }

@@ -31,7 +31,8 @@
     <link href="../../gentelella-master/build/css/custom.min.css" rel="stylesheet">
     <!-- DataTables-->
     <link href="../../DataTables/datatables.min.css" rel="stylesheet">
-
+    <!-- Jquery-ui -->
+    <link href="../../gentelella-master/vendors/jquery/dist/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 
     <!-- Main Theme Style -->
     <link href="../css/main.css" rel="stylesheet">
@@ -145,7 +146,7 @@
             <div class="ln_solid"></div>
 
             <div id="createFirstCycle_div_id" hidden>
-                <h1 align="center">Create new temperature data</h1>
+                <h1 align="center">Create the initial cycle</h1>
                 <form id="createFirstCycle_form_id" data-parsley-validate="" class="form-horizontal form-label-left"
                       novalidate="">
 
@@ -197,78 +198,89 @@
                 </form>
 
             </div>
-            <div id="createTempsData_div_id" hidden>
-                <h1 align="center">Create new temperatures data</h1>
-                <table id="newTempsData_table_id" class="display" style="width:100%">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Entry Date</th>
-                        <th>Value</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Entry Date</th>
-                        <th>Value</th>
-                    </tr>
-                    </tfoot>
-                </table>
+            <div id="createWeightData_div_id" hidden>
+                <h1 align="center">Create new weight data</h1>
+                <form id="createWeightData_form_id" data-parsley-validate="" class="form-horizontal form-label-left"
+                      novalidate="">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="weightDataEntryDate_input_id">Entry
+                            Date <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="date" id="weightDataEntryDate_input_id" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="weightRange_slider_id">Weight
+                            value
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div id="weightRange_slider_id" class="weightRange_slider_class form-control col-md-7 col-xs-12">
+                                <div id="weightRange_handle_id" class="weightRange_handle_class ui-slider-handle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                </form>
 
             </div>
+            <!-- /page content -->
 
         </div>
-        <!-- /page content -->
-
     </div>
+
+    <!-- jQuery -->
+    <script src="../../gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI-->
+    <script src="../../gentelella-master/vendors/jquery/dist/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../../gentelella-master/vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../../gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../../gentelella-master/vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../../gentelella-master/vendors/moment/min/moment.min.js"></script>
+    <script src="../../gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="../../gentelella-master/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="../../gentelella-master/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="../../gentelella-master/vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="../../gentelella-master/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="../../gentelella-master/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="../../gentelella-master/vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="../../gentelella-master/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="../../gentelella-master/vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="../../gentelella-master/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="../../gentelella-master/vendors/starrr/dist/starrr.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../../gentelella-master/build/js/custom.js"></script>
+    <!-- DataTables-->
+    <script src="../../DataTables/datatables.min.js"></script>
+
+    <!-- Main javascript methods -->
+    <script src="../js/general.js"></script>
+    <script src="../js/rest_api.js"></script>
+    <script src="../js/weight_single.js"></script>
+
+
 </div>
-
-<!-- jQuery -->
-<script src="../../gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI-->
-<script src="../../gentelella-master/vendors/jquery/dist/jquery-ui/jquery-ui.min.js"></script>
-<!-- Bootstrap -->
-<script src="../../gentelella-master/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="../../gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="../../gentelella-master/vendors/nprogress/nprogress.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="../../gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="../../gentelella-master/vendors/iCheck/icheck.min.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="../../gentelella-master/vendors/moment/min/moment.min.js"></script>
-<script src="../../gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap-wysiwyg -->
-<script src="../../gentelella-master/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-<script src="../../gentelella-master/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-<script src="../../gentelella-master/vendors/google-code-prettify/src/prettify.js"></script>
-<!-- jQuery Tags Input -->
-<script src="../../gentelella-master/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<!-- Switchery -->
-<script src="../../gentelella-master/vendors/switchery/dist/switchery.min.js"></script>
-<!-- Select2 -->
-<script src="../../gentelella-master/vendors/select2/dist/js/select2.full.min.js"></script>
-<!-- Parsley -->
-<script src="../../gentelella-master/vendors/parsleyjs/dist/parsley.min.js"></script>
-<!-- Autosize -->
-<script src="../../gentelella-master/vendors/autosize/dist/autosize.min.js"></script>
-<!-- jQuery autocomplete -->
-<script src="../../gentelella-master/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-<!-- starrr -->
-<script src="../../gentelella-master/vendors/starrr/dist/starrr.js"></script>
-<!-- Custom Theme Scripts -->
-<script src="../../gentelella-master/build/js/custom.js"></script>
-<!-- DataTables-->
-<script src="../../DataTables/datatables.min.js"></script>
-
-<!-- Main javascript methods -->
-<script src="../js/general.js"></script>
-<script src="../js/rest_api.js"></script>
-<script src="../js/temperature_multiple.js"></script>
-
-
 </body>
 </html>

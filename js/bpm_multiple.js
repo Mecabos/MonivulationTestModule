@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var userId;
     var firstEntryDate;
-    var selectedTempValues = [];
+    var selectedBpmValues = [];
 
     //************Users Loading
     getAllUserAPI(populateUserSelect);
@@ -24,12 +24,12 @@ $(document).ready(function () {
     function checkFirstCycleCallback(firstCycleIsCreated) {
         if (firstCycleIsCreated) {
             $("#createFirstCycle_div_id").hide();
-            $("#createTempsData_div_id").show();
+            $("#createBpmsData_div_id").show();
         }
         else {
             alert("Initial cycle and status not created please insert proper data");
             $("#createFirstCycle_div_id").show();
-            $("#createTempsData_div_id").hide();
+            $("#createBpmsData_div_id").hide();
         }
     }
 
@@ -54,41 +54,41 @@ $(document).ready(function () {
     function createFirstCycleCallback(response) {
         alert(response)
         $("#createFirstCycle_div_id").hide();
-        $("#createTempsData_div_id").show();
+        $("#createBpmsData_div_id").show();
 
     }
 
     //************Initial data for new Cycle
-    function updateNewTempsEntryDate(lastCycleInfo) {
+    function updateNewBpmsEntryDate(lastCycleInfo) {
         if (lastCycleInfo.entryDate != undefined) {
             formattedLastCycleEndDate = formatDateFromServer(lastCycleInfo.entryDate);
             firstEntryDate = formatDateForHtml(addNumberOfDays(formattedLastCycleEndDate, 1));
-            setAllTempsData(1);
+            setAllBpmsData(1);
         } else if (lastCycleInfo.startDate != undefined) {
             formattedLastCycleEndDate = formatDateFromServer(lastCycleInfo.startDate);
             firstEntryDate = formatDateForHtml(addNumberOfDays(formattedLastCycleEndDate, 0));
-            setAllTempsData(1);
+            setAllBpmsData(1);
         } else {
-            getCycleInfoAPI(userId, formatDateForServer(new Date().toDateInputValue()), updateNewTempsEntryDate);
+            getCycleInfoAPI(userId, formatDateForServer(new Date().toDateInputValue()), updateNewBpmsEntryDate);
         }
 
     }
 
     //************New Cycles table config
     function getRowColumns(index) {
-        var initialNewTempsTableData = [
+        var initialNewBpmsTableData = [
             [
                 '<span class="rowIndex">' + index + '</span>',
                 '<input type="date" class="entryDate_input_class form-control" id="entryDate_input_id_' + index + '">',
-                '<div id="tempRange_slider_id_' + index + '" class="form-control">' +
-                '<div id="tempRange_handle_id_' + index + '" class="ui-slider-handle"></div>' +
+                '<div id="bpmRange_slider_id_' + index + '" class="form-control">' +
+                '<div id="bpmRange_handle_id_' + index + '" class="ui-slider-handle"></div>' +
                 '</div>'
             ]
         ];
-        return initialNewTempsTableData;
+        return initialNewBpmsTableData;
     }
 
-    var newTempsDataTable = $('#newTempsData_table_id').DataTable({
+    var newBpmsDataTable = $('#newBpmsData_table_id').DataTable({
         "dom": 'Bfrtip',
         "data": getRowColumns(1),
         "paging": false,
@@ -99,34 +99,34 @@ $(document).ready(function () {
             {
                 text: 'Reset',
                 action: function (e, dt, node, config) {
-                    newTempsDataTable.clear();
-                    newTempsDataTable.rows.add(getRowColumns(1)).draw();
+                    newBpmsDataTable.clear();
+                    newBpmsDataTable.rows.add(getRowColumns(1)).draw();
                     $("#run_btn_id").attr('disabled', true);
                     $("#startNewCycle_btn_id").attr('disabled', true);
                     $("#startPregnancy_btn_id").attr('disabled', true);
-                    setUpTempValueSlider(1);
+                    setUpBpmValueSlider(1);
                 },
                 className: 'action_btn_class'
             },
             {
                 text: '+1',
                 action: function (e, dt, node, config) {
-                    var index = newTempsDataTable.rows().count() + 1;
-                    newTempsDataTable.rows.add(getRowColumns(index)).draw();
+                    var index = newBpmsDataTable.rows().count() + 1;
+                    newBpmsDataTable.rows.add(getRowColumns(index)).draw();
                     $("#run_btn_id").attr('disabled', true);
                     $("#startNewCycle_btn_id").attr('disabled', true);
                     $("#startPregnancy_btn_id").attr('disabled', true);
-                    setUpTempValueSlider(index);
+                    setUpBpmValueSlider(index);
                 },
                 className: 'action_btn_class'
             },
             {
                 text: '+5',
                 action: function (e, dt, node, config) {
-                    var originalCount = newTempsDataTable.rows().count();
+                    var originalCount = newBpmsDataTable.rows().count();
                     for (i = 1; i <= 5; i++) {
-                        newTempsDataTable.rows.add(getRowColumns(originalCount + i)).draw();
-                        setUpTempValueSlider(originalCount + i);
+                        newBpmsDataTable.rows.add(getRowColumns(originalCount + i)).draw();
+                        setUpBpmValueSlider(originalCount + i);
                     }
                     $("#run_btn_id").attr('disabled', true);
                     $("#startNewCycle_btn_id").attr('disabled', true);
@@ -137,7 +137,7 @@ $(document).ready(function () {
             {
                 text: 'Set Data',
                 action: function (e, dt, node, config) {
-                    getLastTemperatureAPI(userId, updateNewTempsEntryDate);
+                    getLastBpmAPI(userId, updateNewBpmsEntryDate);
                 },
                 className: 'action_btn_class',
                 attr: {
@@ -147,7 +147,7 @@ $(document).ready(function () {
             {
                 text: 'Run',
                 action: function (e, dt, node, config) {
-                    collectDataForTempsCreation(1);
+                    collectDataForBpmsCreation(1);
                 },
                 className: 'action_btn_class',
                 attr: {
@@ -188,13 +188,13 @@ $(document).ready(function () {
             }
         ],
         "initComplete": function (settings, json) {
-            setUpTempValueSlider(1);
+            setUpBpmValueSlider(1);
         }
     });
 
     //************New Cycles Data calculation
-    function setAllTempsData(i) {
-        if (i <= newTempsDataTable.rows().count()) {
+    function setAllBpmsData(i) {
+        if (i <= newBpmsDataTable.rows().count()) {
             if (i == 1) {
                 $("#entryDate_input_id_1").val(firstEntryDate);
             } else {
@@ -203,7 +203,7 @@ $(document).ready(function () {
                 $("#entryDate_input_id_" + i).val(formatDateForHtml(currentRowEntryDate));
             }
             i++;
-            setAllTempsData(i);
+            setAllBpmsData(i);
         } else {
             $("#run_btn_id").attr('disabled', false);
             $("#startNewCycle_btn_id").attr('disabled', false);
@@ -211,49 +211,49 @@ $(document).ready(function () {
         }
     }
 
-    //************Temperature slider
-    function setUpTempValueSlider(index){
-        var handle = $("#tempRange_handle_id_"+index);
-        var selectedTempValue;
-        $("#tempRange_slider_id_"+index).slider({
+    //************Bpm slider
+    function setUpBpmValueSlider(index){
+        var handle = $("#bpmRange_handle_id_"+index);
+        var selectedBpmValue;
+        $("#bpmRange_slider_id_"+index).slider({
             range: false,
-            min: 36,
-            max: 38,
-            step: 0.1,
+            min: 60,
+            max: 100,
+            step: 0.5,
             create: function () {
                 handle.text($(this).slider("value"));
             },
             slide: function (event, ui) {
-                selectedTempValues[index-1] = ui.value;
+                selectedBpmValues[index-1] = ui.value;
                 handle.text(ui.value);
             }
         });
     }
 
-    //************Temperature data creation
-    function collectDataForTempsCreation(index) {
-        if (index <= newTempsDataTable.rows().count()) {
+    //************Bpm data creation
+    function collectDataForBpmsCreation(index) {
+        if (index <= newBpmsDataTable.rows().count()) {
             var entryDate = addNumberOfDays($("#entryDate_input_id_" + index).val(), 0);
             formattedForServerEntryDate = formatDateForServer(entryDate);
-            tempValue = selectedTempValues[index-1];
-            if (tempValue == 0 || tempValue == undefined)
-                tempValue = 36;
-            tempData = {
-                value: tempValue,
+            bpmValue = selectedBpmValues[index-1];
+            if (bpmValue == 0 || bpmValue == undefined)
+                bpmValue = 60;
+            bpmData = {
+                value: bpmValue,
                 entryDate: formattedForServerEntryDate
             }
-            createNewTempData(tempData,index);
+            createNewBpmData(bpmData,index);
         } else {
-            getLastTemperatureAPI(userId, updateNewTempsEntryDate);
-            console.log("-----FINISHED INSERTING " + (index - 1) + " Temperatures data-----");
+            getLastBpmAPI(userId, updateNewBpmsEntryDate);
+            console.log("-----FINISHED INSERTING " + (index - 1) + " Bpms data-----");
         }
     }
 
-    function createNewTempData(tempData,i) {
-        addSingleTempDataAPI(userId, tempData, function () {
-            getCycleInfoAPI(userId,tempData.entryDate , function (response) {
-                console.log(formatDateFromServer(tempData.entryDate) + " : " + tempData.value + "°" + "=> Status :\"" + response.currentStatus + "\"||Current Day :" + response.currentDayOfCycle);
-                collectDataForTempsCreation(i+1);
+    function createNewBpmData(bpmData,i) {
+        addSingleBpmDataAPI(userId, bpmData, function () {
+            getCycleInfoAPI(userId,bpmData.entryDate , function (response) {
+                console.log(formatDateFromServer(bpmData.entryDate) + " : " + bpmData.value + "bpm" + "||Current Day :" + response.currentDayOfCycle);
+                collectDataForBpmsCreation(i+1);
             });
         })
     }
