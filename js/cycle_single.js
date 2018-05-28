@@ -68,7 +68,7 @@ $(document).ready(function () {
             $("#newStartDate_input_id").val(formatDateForHtml(addNumberOfDays(formattedLastCycleEndDate, 0)));
             updateNewOvulationDate();
         }else {
-            getCycleInfoAPI(userId, new Date().toDateInputValue() ,updateNewCycleStartDate);
+            getCycleInfoAPI(userId, formatDateForServer(new Date().toDateInputValue()) ,updateNewCycleStartDate);
         }
 
     }

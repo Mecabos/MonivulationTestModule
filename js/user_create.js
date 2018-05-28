@@ -26,15 +26,5 @@ $(document).ready(function () {
         else
             alert("User already exist");
     }
-
-    var params = {
-        temp: 64,
-        lumiere: 5
-    }
-    url = addUrlParams(url, params)
-
-
-
-
 });
 

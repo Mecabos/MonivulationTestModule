@@ -13,6 +13,7 @@ var addWeightURL = serverURL + '/weightData/add/';
 var getLastWeightURL = serverURL + '/weightData/getLast/';
 var addBpmURL = serverURL + '/bpmData/add/';
 var getLastBpmURL = serverURL + '/bpmData/getLast/';
+var getAllAnomalyURL = serverURL + '/anomaly/getAll/';
 /*---------------------------------REST Services---------------------------------*/
 /*---USER---*/
 function getAllUserAPI(callback){
@@ -247,6 +248,19 @@ function startPregnancyAPI(id,startDate,callback){
         datatype: "application/json",
         success: function (response) {
             callback();
+        }
+    });
+}
+/*---ANOMALY---*/
+function getAllAnomalyAPI(id,callback){
+    $.ajax({
+        type: 'GET',
+        url: getAllAnomalyURL + id,
+        data : {},
+        contentType: "application/json",
+        datatype: "application/json",
+        success: function (response) {
+            callback(response);
         }
     });
 }
